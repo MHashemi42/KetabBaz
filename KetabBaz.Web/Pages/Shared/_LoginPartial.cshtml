@@ -1,0 +1,7 @@
+﻿@if (!User.Identity.IsAuthenticated)
+{
+    <div class="btn-group me-3 order-lg-2" role="group">
+        <a class="btn btn-outline-primary" asp-page="/Account/Login">ورود</a>
+        <a class="btn btn-outline-primary" asp-page="/Account/Register">ثبت نام</a>
+    </div>
+}

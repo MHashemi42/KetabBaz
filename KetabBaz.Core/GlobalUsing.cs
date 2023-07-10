@@ -1,0 +1,9 @@
+﻿global using System;
+global using System.Net;
+global using KetabBaz.Core.Entities.Base;
+global using System.Collections.Generic;
+global using KetabBaz.Core.Entities;
+global using KetabBaz.Core.Dtos;
+global using System.Threading.Tasks;
+global using KetabBaz.Core.Models;
+global using KetabBaz.Core.Enums;

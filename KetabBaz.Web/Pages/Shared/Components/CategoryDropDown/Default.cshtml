@@ -1,0 +1,17 @@
+﻿@model IEnumerable<CategoryDto>
+
+<li class="mb-1 nav-item col-12 col-lg-auto dropdown">
+	<a class="nav-link dropdown-toggle col-6 col-lg-auto" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		دسته بندی ها
+	</a>
+	<div class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+		<div class="row">
+			@foreach (var category in Model)
+			{
+				<div class="col-6 col-lg-12">
+					<a class="dropdown-item" asp-page="Search" asp-route-category="@category.Title">@category.Title</a>
+				</div>
+			}
+		</div>
+	</div>
+</li>

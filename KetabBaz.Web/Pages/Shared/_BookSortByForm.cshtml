@@ -1,0 +1,9 @@
+﻿@model (SearchBookParameters Input, SortBookType SortBy, string Title)
+
+
+<a class="list-group-item list-group-item-action
+    @(Model.Input.SortBy == Model.SortBy ? "active" : "")"
+   asp-all-route-data="@StringDictionryConverter.ToDictionary(Model.Input)"
+   asp-route-sortby="@Model.SortBy">
+    @Model.Title
+</a>

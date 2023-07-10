@@ -1,0 +1,48 @@
+﻿@page
+@model KetabBaz.Web.Pages.Account.LoginModel
+@{
+    Layout = "_AccountLayout";
+    ViewData["Title"] = "ورود";
+}
+
+<form method="post" asp-page="ExternalLogin" asp-route-returnUrl="@ViewData["returnUrl"]" class="form-horizontal">
+    <div class="d-grid gap-2">
+        <input type="hidden" value="Google" name="provider" />
+        <button type="submit" class="btn btn-outline-success">ورود با Google</button>
+    </div>
+</form>
+<div class="my-4 position-relative">
+    <h6 class="text-center fw-light position-absolute top-50 start-50 translate-middle bg-white px-2">یا</h6>
+    <div class="progress" style="height: 1px;">
+        <div class="progress-bar bg-secondary" role="progressbar" style="width: 100%;"></div>
+    </div>
+</div>
+<form method="post" asp-route-returnUrl="@ViewData["returnUrl"]">
+    <div class="mb-3">
+        <label asp-for="UserLogin.Email" class="form-label"></label>
+        <input asp-for="UserLogin.Email" class="form-control" />
+        <span asp-validation-for="UserLogin.Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="UserLogin.Password" class="form-label"></label>
+        <input asp-for="UserLogin.Password" class="form-control" />
+        <span asp-validation-for="UserLogin.Password" class="text-danger"></span>
+    </div>
+    <div class="form-check mb-3">
+        <input asp-for="UserLogin.RememberMe" class="form-check-input">
+        <label asp-for="UserLogin.RememberMe" class="form-check-label">
+            من را بخاطر بسپار
+        </label>
+    </div>
+    <div class="mb-3">
+        <a asp-page="ForgetPassword" class="text-decoration-underline-hover">فراموش کرده اید؟</a>
+    </div>
+    <div class="mb-1">
+        <button type="submit" class="btn btn-success mb-3">ورود</button>
+    </div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

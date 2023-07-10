@@ -1,0 +1,83 @@
+﻿@page
+@model KetabBaz.Web.Pages.SearchModel
+
+<div class="row d-lg-none d-flex">
+    <div class="col-6">
+        <div class="d-grid gap-2">
+            <button type="button" class="btn btn-outline-secondary btn-lg" data-bs-toggle="collapse"
+                    data-bs-target="#sortBy" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>مرتب سازی
+            </button>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="d-grid gap-2">
+            <button type="button" class="btn btn-outline-secondary btn-lg" data-bs-toggle="collapse"
+                    data-bs-target="#filterBy" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-sliders" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z" />
+                </svg>فیلتر نتایج
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="collapse row text-center mt-4" id="sortBy">
+    <div class="list-group">
+        <partial name="_BookSortByForm" model="@(Model.Search, SortBookType.ByLatest, "جدیدترین")" />
+        <partial name="_BookSortByForm" model="@(Model.Search, SortBookType.ByMostVisited, "پربازدیدترین")" />
+    </div>
+</div>
+
+<div class="collapse row mt-4" id="filterBy">
+    <partial name="_BookFilterByCategoryForm" model="@(Model.Categories, Model.Search)" />
+    <partial name="_BookFilterByPublisherForm" model="@(Model.Publishers, Model.Search)" />
+</div>
+
+<div class="row">
+    <div class="col-3 d-none d-lg-block">
+        <h3 class="fw-normal d-none d-lg-block">مرتب سازی</h3>
+        <div class="list-group">
+            <partial name="_BookSortByForm" model="@(Model.Search, SortBookType.ByLatest, "جدیدترین")" />
+            <partial name="_BookSortByForm" model="@(Model.Search, SortBookType.ByMostVisited, "پربازدیدترین")" />
+        </div>
+        <partial name="_BookFilterByCategoryForm" model="@(Model.Categories, Model.Search)" />
+        <partial name="_BookFilterByPublisherForm" model="@(Model.Publishers, Model.Search)" />
+    </div>
+    <div class="col-lg-9 col-md-12">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 my-4 mx-1">
+            @if (Model.Books.Count() == 0)
+            {
+                <h3 class="w-100 text-center">کتابی براساس فیلتر یافت نشد!</h3>
+            }
+            else
+            {
+                @foreach (var book in Model.Books)
+                {
+                    <div class="col">
+                        <div class="card h-100 border border-2 rounded mb-1" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-6 col-md-12">
+                                    <img src="@book.ImageUrl" class="img-fluid rounded-start p-3"
+                                 alt="@book.TranslatedTitle">
+                                </div>
+                                <div class="col-6 col-md-12">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title mb-3">@book.TranslatedTitle</h5>
+                                        <p class="card-text mb-2">اثر: @book.AuthorName</p>
+                                        <p class="card-text text-muted fs-6">@book.TranslatorName</p>
+                                        <a asp-page="Book" asp-route-bookid="@book.Id" class="stretched-link"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <partial name="_BookPagination" model="(Model.Search, Model.TotalPages)" />
+    </div>
+</div>

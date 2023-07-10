@@ -1,0 +1,13 @@
+﻿@page
+@model KetabBaz.Web.Pages.Account.ConfirmEmailModel
+@{
+    Layout = "_AccountLayout";
+    ViewData["Title"] = "تایید ایمیل";
+}
+
+<div class="text-center py-3">
+    <h1 class="text-center fs-3">@ViewData["Title"]</h1>
+    <p>
+        ایمیل شما تایید شد. <a asp-page="Login" class="text-decoration-underline-hover">برای ورود کلیک </a> کنید.
+    </p>
+</div>

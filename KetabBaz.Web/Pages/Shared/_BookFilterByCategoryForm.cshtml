@@ -1,0 +1,20 @@
+﻿@model (IEnumerable<CategoryDto> Categories, SearchBookParameters Input)
+
+<h3 class="fw-normal">دسته بندی</h3>
+<div class="list-group">
+    <a class="list-group-item list-group-item-action border-0 p-1
+        @(string.IsNullOrWhiteSpace(Model.Input.Category) ? "active" : "")"
+        asp-all-route-data="@StringDictionryConverter.ToDictionary(Model.Input)"
+        asp-route-category="@string.Empty">
+        همه
+    </a>
+    @foreach (var category in Model.Categories)
+    {
+        <a class="list-group-item list-group-item-action border-0 p-1
+           @(Model.Input.Category == category.Title ? "active" : "")"
+           asp-all-route-data="@StringDictionryConverter.ToDictionary(Model.Input)"
+           asp-route-category="@category.Title">
+            @category.Title
+        </a>
+    }
+</div>

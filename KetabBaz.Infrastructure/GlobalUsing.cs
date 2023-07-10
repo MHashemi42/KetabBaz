@@ -1,0 +1,16 @@
+﻿global using KetabBaz.Core.Entities;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using KetabBaz.Core.Entities.Base;
+global using KetabBaz.Core.Interfaces;
+global using System;
+global using System.Collections.Generic;
+global using System.Threading.Tasks;
+global using KetabBaz.Infrastructure.Data.Repositories.Base;
+global using System.Linq;
+global using KetabBaz.Core.Enums;
+global using KetabBaz.Core.Models;
+global using System.Net;
+global using AutoMapper;
+global using KetabBaz.Core.Dtos;
+global using KetabBaz.Core.Exceptions;

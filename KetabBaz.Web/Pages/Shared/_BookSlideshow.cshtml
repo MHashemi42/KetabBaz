@@ -1,0 +1,18 @@
+﻿@model SlideshowDto
+
+<div class="my-2 container bg-white border border-2 rounded-3">
+
+	<div class="row">
+		<h2 class="col-auto">@Model.Title</h2>
+		<a href="/search?@Model.Query" class="col-auto ms-auto my-auto">
+			<span class="badge rounded-pill bg-primary">
+				نمایش همه
+			</span>
+		</a>
+	</div>
+
+	<div class="py-2 slideshow"
+		 id="slideshow-@Model.Id"
+		 data-query="@Model.Query">
+	</div>
+</div>

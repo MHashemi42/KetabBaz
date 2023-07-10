@@ -1,0 +1,12 @@
+﻿@model IEnumerable<BannerDto>
+
+<div class="row my-2">
+	@foreach (var banner in Model)
+	{
+		<div class="col-6 col-md-3 p-1">
+			<a href="@banner.Url">
+				<img src="@banner.ImageUrl" class="w-100 rounded">
+			</a>
+		</div>
+	}
+</div>

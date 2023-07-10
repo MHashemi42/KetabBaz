@@ -1,0 +1,21 @@
+﻿@model (IEnumerable<PublisherDto> Publishers, SearchBookParameters Input)
+
+
+<h3 class="fw-normal">انتشارات</h3>
+<div class="list-group">
+    <a class="list-group-item list-group-item-action border-0 p-1
+        @(string.IsNullOrWhiteSpace(Model.Input.Publisher) ? "active" : "")"
+        asp-all-route-data="@StringDictionryConverter.ToDictionary(Model.Input)"
+        asp-route-publisher="@string.Empty">
+        همه
+    </a>
+    @foreach (var publisher in Model.Publishers)
+    {
+        <a class="list-group-item list-group-item-action border-0 p-1
+            @(Model.Input.Publisher == publisher.Title ? "active" : "")"
+            asp-all-route-data="@StringDictionryConverter.ToDictionary(Model.Input)"
+            asp-route-publisher="@publisher.Title">
+            @publisher.Title
+        </a>
+    }
+</div>
